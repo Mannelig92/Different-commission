@@ -1,13 +1,13 @@
 package ru.netology
 
 fun main() {
-    val transferAmount = 500_000.0   //сумма перевода
+    val transferAmount = 500_000   //сумма перевода
     val typeOfCard = "Maestro"
     val amountOfPreviousTransfers = 7_600_000   //Сумма предыдущих переводов в этом месяце
     whichCard(typeOfCard, transferAmount, amountOfPreviousTransfers)
 }
 
-private fun whichCard(typeOfCard: String, transferAmount: Double, amountOfPreviousTransfers: Int) {
+private fun whichCard(typeOfCard: String, transferAmount: Int, amountOfPreviousTransfers: Int) {
     when (typeOfCard) {
         "Mastercard", "Maestro" -> masterCardAndMaestro(transferAmount, amountOfPreviousTransfers)
         "Visa", "Mir" -> visaAndMir(transferAmount)
@@ -15,7 +15,7 @@ private fun whichCard(typeOfCard: String, transferAmount: Double, amountOfPrevio
     }
 }
 
-fun masterCardAndMaestro(transferAmount: Double, amountOfPreviousTransfers: Int) {
+fun masterCardAndMaestro(transferAmount: Int, amountOfPreviousTransfers: Int) {
     when {
         amountOfPreviousTransfers > 7_500_000 -> {
             var amountAfterCommission = transferAmount - (transferAmount * 0.006)
@@ -26,7 +26,7 @@ fun masterCardAndMaestro(transferAmount: Double, amountOfPreviousTransfers: Int)
     }
 }
 
-fun visaAndMir(transferAmount: Double) {
+fun visaAndMir(transferAmount: Int) {
     when {
         transferAmount > 3500 -> {
             val amountAfterCommission = transferAmount - (transferAmount * 0.0075)
